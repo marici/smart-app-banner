@@ -12,10 +12,10 @@ var userLang = userLangAttribute.slice(-2) || 'us';
 // platform dependent functionality
 var mixins = {
 	ios: {
-		appMeta: 'apple-itunes-app',
+		appMeta: 'wn-apple-itunes-app',
 		iconRels: ['apple-touch-icon-precomposed', 'apple-touch-icon'],
 		getStoreLink: function() {
-			return 'https://itunes.apple.com/' + this.options.appStoreLanguage + '/app/id' + this.appId;
+			return this.appId;
 		}
 	},
 	android: {
@@ -58,8 +58,7 @@ var SmartBanner = function(options) {
 		this.type = this.options.force;
 	} else if (agent.os.name === 'Windows Phone' || agent.os.name === 'Windows Mobile') {
 		this.type = 'windows';
-	//iOS >= 6 has native support for SmartAppBanner
-	} else if (agent.os.name === 'iOS' && (parseInt(agent.os.version) < 6 || (agent.browser.name !== 'Mobile Safari' && agent.browser.name !== 'WebKit'))) {
+	} else if (agent.os.name === 'iOS') {
 		this.type = 'ios';
 	} else if (agent.os.name === 'Android') {
 		this.type = 'android';

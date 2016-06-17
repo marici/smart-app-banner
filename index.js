@@ -58,7 +58,7 @@ var SmartBanner = function(options) {
 		this.type = this.options.force;
 	} else if (agent.os.name === 'Windows Phone' || agent.os.name === 'Windows Mobile') {
 		this.type = 'windows';
-	} else if (agent.os.name === 'iOS') {
+	} else if (agent.os.name === 'iOS' && agent.browser.name !== 'WebKit') {
 		this.type = 'ios';
 	} else if (agent.os.name === 'Android') {
 		this.type = 'android';
